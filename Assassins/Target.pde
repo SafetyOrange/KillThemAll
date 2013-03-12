@@ -27,8 +27,6 @@ class Target {
 
   void update() {
 
-
-
     if (timeFreeze==true) {
       pos.x+=0;
       pos.y+=0;
@@ -49,17 +47,15 @@ class Target {
       lerp=-.01;
     }
 
-
     if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       //  lerp=0;
       targetVel.x*=-1;
     }
 
-    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= peopleSize/2) {
       // lerp=0;
       targetVel.y*=-1;
     }
-
 
     if (found==true) {
       targetColor = color(175, 0, 0);

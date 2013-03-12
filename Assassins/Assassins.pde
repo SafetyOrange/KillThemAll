@@ -7,6 +7,10 @@ Target target;
 
 int gameState;  //Counter to determine the game state
 
+int sheepNum = 100; //Number of bystanders
+
+int spawnBuffer = 60; //"Safe-Zone" buffer
+
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
@@ -27,7 +31,7 @@ void setup() {
   player = new Player();
   player.prime();
 
-  sheep = new Sheep[200];
+  sheep = new Sheep[sheepNum];
   for (int i=0;i<sheep.length;i++) {
     sheep[i] = new Sheep();
     sheep[i].prime();

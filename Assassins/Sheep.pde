@@ -4,8 +4,10 @@ class Sheep {
   PVector pos;
   int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
   color sheepColor;
+  
 
   void prime() {
+    
     sheepVel = new PVector(random(-2, 2), random(-2, 2));
     if (sheepVel.x<1) {
       sheepVel.x++;
@@ -14,7 +16,7 @@ class Sheep {
       sheepVel.y++;
     }
 
-    pos = new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
     sheepColor = color(175, 175, 0);
   }
   void drawSheep() {
@@ -35,7 +37,7 @@ class Sheep {
     if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       sheepVel.x*=-1;
     }
-    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+    if (pos.y<=(peopleSize/2)+spawnBuffer || pos.y>=height-peopleSize/2) {
       sheepVel.y*=-1;
     }
   }

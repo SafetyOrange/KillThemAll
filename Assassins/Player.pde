@@ -7,7 +7,7 @@ class Player {
 
   void prime() {
     playerSpeed = 5;
-    pos = new PVector(20, 20);
+    pos = new PVector(width/2, 20);
     health = 100;
     alive = true;
   }
