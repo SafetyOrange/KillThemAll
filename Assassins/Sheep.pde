@@ -5,7 +5,10 @@ class Sheep {
   int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
   color sheepColor;
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> Fail
   void prime() {
     
     sheepVel = new PVector(random(-2, 2), random(-2, 2));

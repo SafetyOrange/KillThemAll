@@ -10,6 +10,7 @@ int gameState;  //Counter to determine the game state
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
+float tfCharge;
 
 void setup() {
   titlescreen = new titleScreen();
@@ -17,8 +18,9 @@ void setup() {
   smooth();
   frameRate(60);
   size(600, 600);
-  
+
   timeFreeze=false;
+  tfCharge = 100;
 
   float peopleSize = 10;
 
@@ -39,7 +41,7 @@ void setup() {
 
 void draw() {
   background(255);
-  switch(gameState){ 
+  switch(gameState) { 
   case 0:
     //draw title screen
     titlescreen.update();
@@ -55,6 +57,24 @@ void draw() {
 
     target.drawTarget();
     target.update();
+
+
+    if (timeFreeze==true) {
+      tfCharge-=1;
+      if (tfCharge<0) {
+        tfCharge=0;
+      }
+    }
+    else {
+      tfCharge+=1;
+      if (tfCharge>100) {
+        tfCharge=100;
+      }
+    }
+
+    fill(0);
+    rect(20, 20, tfCharge, 5);
+    println(tfCharge);
     break;
   }
 }
@@ -75,10 +95,10 @@ void keyPressed() {
   if (keyCode=='D') {
     rightTrue=true;
   }
-  
+
   if (keyCode==' ') {
     timeFreeze=true;
-  //  println(timeFreeze);
+    //  println(timeFreeze);
   }
 }
 
@@ -104,12 +124,12 @@ void keyReleased() {
   if (keyCode=='M') {
     found=true;
   }
-  
-   if (keyCode==' ') {
+
+  if (keyCode==' ') {
     timeFreeze=false;
-   // println(timeFreeze);
+    // println(timeFreeze);
   }
-  
+
   if (keyCode=='R') {
     setup();
   }
@@ -149,10 +169,15 @@ class Player {
       if (pos.dist(sheep[i].pos) < (peopleSize)) {
         sheep[i].sheepVel.x *= -1; 
         sheep[i].sheepVel.y *= -1;
-        health-=2;
-        println(health);
+        if(health>0)  health-=1;
+//        println(health);
       }
     }
+    
+    fill(0,255,0);
+    rect(20, 10, health, 5);
+
+    
     //sheep against sheep
     for (int i=0;i<sheep.length;i++) {
       for (int j=0;j<sheep.length;j++) {   
@@ -189,7 +214,7 @@ class Sheep {
   PVector pos;
   int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
   color sheepColor;
-
+  
   void prime() {
     sheepVel = new PVector(random(-2, 2), random(-2, 2));
     if (sheepVel.x<1) {
@@ -209,8 +234,7 @@ class Sheep {
   }
 
   void updateSheep() {
-
-    if (timeFreeze==true) {
+    if (timeFreeze==true && tfCharge>0) {
       pos.x+=0;
       pos.y+=0;
     }
