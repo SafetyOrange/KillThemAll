@@ -1,71 +1,68 @@
 class Target {
 
   float lerp=-.01;
-
-  float targetSpeedX;
-  float targetSpeedY;
-  float xPos;
-  float yPos;
-  int c;
+  PVector pos;
+  PVector targetVel;
+  color targetColor;
 
   void prime() {
-    c=175;
-    targetSpeedX= random(-2, 2);
-    targetSpeedY= random(-2, 2);
-    if (targetSpeedX<1) {
-      targetSpeedX++;
+    targetColor = color(175, 175, 0);
+    targetVel= new PVector(random(-2, 2), random(-2, 2));
+
+    if (targetVel.x<1) {
+      targetVel.x++;
     }
-    if (targetSpeedY<1) {
-      targetSpeedY++;
+    if (targetVel.y<1) {
+      targetVel.y++;
       peopleSize = 20;
     }
-    xPos=random(peopleSize, width-peopleSize);
-    yPos=random(peopleSize, height-peopleSize);
+    pos= new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
   }
 
   void drawTarget() {
-    fill(175, c, 0);
+    fill(targetColor);
     stroke(0);
-    ellipse(xPos, yPos, peopleSize, peopleSize);
+    ellipse(pos.x, pos.y, peopleSize, peopleSize);
   }
 
   void update() {
 
-    if (dist(xPos, yPos, player.xPos, player.yPos) < 200) {
-      xPos = lerp(xPos, player.xPos, lerp);
-      yPos = lerp(yPos, player.yPos, lerp);
-      if (xPos<=peopleSize|| xPos>=width-peopleSize) {
-        lerp/=10;
-      }
 
-      if (yPos<=peopleSize || yPos>=height-peopleSize) {
-        lerp/=5;
-      }
-    }
 
     if (timeFreeze==true) {
-      xPos+=0;
-      yPos+=0;
+      pos.x+=0;
+      pos.y+=0;
     }
     else {
-      xPos+=targetSpeedX;
-      yPos+=targetSpeedY;
+      if (pos.dist(player.pos) < 200) {
+        pos.lerp(player.pos, lerp);
+        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
+          lerp/=10;
+        }
+
+        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
+          lerp/=5;
+        }
+      }
+
+      pos.add(targetVel);
       lerp=-.01;
     }
 
 
-    if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
+    if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       //  lerp=0;
-      targetSpeedX*=-1;
+      targetVel.x*=-1;
     }
 
-    if (yPos<=peopleSize/2 || yPos>=height-peopleSize/2) {
+    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
       // lerp=0;
-      targetSpeedY*=-1;
+      targetVel.y*=-1;
     }
+
 
     if (found==true) {
-      c=0;
+      targetColor = color(175, 0, 0);
     }
   }
 }

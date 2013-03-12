@@ -1,3 +1,5 @@
+titleScreen titlescreen;
+
 float peopleSize;
 Player player;
 Sheep[] sheep;
@@ -10,7 +12,8 @@ boolean found;
 boolean timeFreeze;
 
 void setup() {
-  gameState=0;
+  titlescreen = new titleScreen();
+  gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
   size(600, 600);
@@ -38,6 +41,10 @@ void draw() {
   background(255);
   switch(gameState){ 
   case 0:
+    //draw title screen
+    titlescreen.update();
+    break;
+  case 1:
     player.drawPlayer();
     player.update();
 
@@ -109,7 +116,7 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.xPos, target.yPos)<peopleSize/2) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
     println("Found.");
   }

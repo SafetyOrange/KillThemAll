@@ -1,49 +1,46 @@
 class Sheep {
 
-  float sheepSpeedX;
-  float sheepSpeedY;
-  float xPos;
-  float yPos;
-  int direction = int(random(3));
+  float sheepSize;
+  PVector sheepVel;
+  PVector pos;
+  int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
+  color sheepColor;
 
   void prime() {
-    sheepSpeedX= random(-2,2);
-    sheepSpeedY= random(-2,2);
-    if(sheepSpeedX<1){
-      sheepSpeedX++;
+    sheepVel = new PVector(random(-2, 2), random(-2, 2));
+    if (sheepVel.x<1) {
+      sheepVel.x++;
     }
-    if(sheepSpeedY<1){
-      sheepSpeedY++;
+    if (sheepVel.y<1) {
+      sheepVel.y++;
     }
-    
-    peopleSize = 20;
-    xPos=random(peopleSize, width-peopleSize);
-    yPos=random(peopleSize, height-peopleSize);
+
+    sheepSize = 20;
+    pos = new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    sheepColor = color(175, 175, 0);
   }
   void drawSheep() {
-    fill(175, 175, 0);
+    fill(sheepColor);
     stroke(0);
-    ellipse(xPos, yPos, peopleSize, peopleSize);
+    ellipse(pos.x, pos.y, peopleSize, peopleSize);
   }
 
   void updateSheep() {
-    if(timeFreeze==true){
-      xPos+=0;
-      yPos+=0;
-    }
-  else{
-   xPos+=sheepSpeedX;
-   yPos+=sheepSpeedY;
-  }
 
-    if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
-      sheepSpeedX*=-1;
+    if (timeFreeze==true) {
+      pos.x+=0;
+      pos.y+=0;
+    }
+    else {
+      pos.add(sheepVel);
     }
 
-    if (yPos<=peopleSize/2 || yPos>=height-peopleSize/2) {
-      sheepSpeedY*=-1;
+    if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
+      sheepVel.x*=-1;
     }
-
+    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+      sheepVel.y*=-1;
+    }
   }
 }
 
