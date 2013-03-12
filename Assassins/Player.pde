@@ -25,10 +25,14 @@ class Player {
       if (pos.dist(sheep[i].pos) < (peopleSize)) {
         sheep[i].sheepVel.x *= -1; 
         sheep[i].sheepVel.y *= -1;
-        health-=2;
+        if(health>0)  health-=1;
 //        println(health);
       }
     }
+    
+    fill(0,255,0);
+    rect(20, 10, health, 5);
+
     
     //sheep against sheep
     for (int i=0;i<sheep.length;i++) {
