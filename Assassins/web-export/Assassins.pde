@@ -7,6 +7,10 @@ Target target;
 
 int gameState;  //Counter to determine the game state
 
+int sheepNum = 100; //Number of bystanders
+
+int spawnBuffer = 60; //"Safe-Zone" buffer
+
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
@@ -27,7 +31,7 @@ void setup() {
   player = new Player();
   player.prime();
 
-  sheep = new Sheep[200];
+  sheep = new Sheep[sheepNum];
   for (int i=0;i<sheep.length;i++) {
     sheep[i] = new Sheep();
     sheep[i].prime();
@@ -151,7 +155,7 @@ class Player {
 
   void prime() {
     playerSpeed = 5;
-    pos = new PVector(20, 20);
+    pos = new PVector(width/2, 20);
     health = 100;
     alive = true;
   }
@@ -215,7 +219,9 @@ class Sheep {
   int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
   color sheepColor;
   
+
   void prime() {
+    
     sheepVel = new PVector(random(-2, 2), random(-2, 2));
     if (sheepVel.x<1) {
       sheepVel.x++;
@@ -224,7 +230,7 @@ class Sheep {
       sheepVel.y++;
     }
 
-    pos = new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
     sheepColor = color(175, 175, 0);
   }
   void drawSheep() {
@@ -245,7 +251,7 @@ class Sheep {
     if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       sheepVel.x*=-1;
     }
-    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+    if (pos.y<=(peopleSize/2)+spawnBuffer || pos.y>=height-peopleSize/2) {
       sheepVel.y*=-1;
     }
   }
@@ -280,8 +286,6 @@ class Target {
 
   void update() {
 
-
-
     if (timeFreeze==true) {
       pos.x+=0;
       pos.y+=0;
@@ -302,17 +306,15 @@ class Target {
       lerp=-.01;
     }
 
-
     if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       //  lerp=0;
       targetVel.x*=-1;
     }
 
-    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= peopleSize/2) {
       // lerp=0;
       targetVel.y*=-1;
     }
-
 
     if (found==true) {
       targetColor = color(175, 0, 0);
