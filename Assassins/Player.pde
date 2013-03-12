@@ -1,6 +1,5 @@
 class Player {
 
-  float playerSize;
   float playerSpeed;
   PVector pos;
   int health;
@@ -8,7 +7,6 @@ class Player {
 
   void prime() {
     playerSpeed = 5;
-    playerSize = 20;
     pos = new PVector(20, 20);
     health = 100;
     alive = true;
@@ -28,9 +26,10 @@ class Player {
         sheep[i].sheepVel.x *= -1; 
         sheep[i].sheepVel.y *= -1;
         health-=2;
-        println(health);
+//        println(health);
       }
     }
+    
     //sheep against sheep
     for (int i=0;i<sheep.length;i++) {
       for (int j=0;j<sheep.length;j++) {   

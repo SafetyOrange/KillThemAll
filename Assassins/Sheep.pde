@@ -1,6 +1,5 @@
 class Sheep {
 
-  float sheepSize;
   PVector sheepVel;
   PVector pos;
   int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
@@ -15,7 +14,6 @@ class Sheep {
       sheepVel.y++;
     }
 
-    sheepSize = 20;
     pos = new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
     sheepColor = color(175, 175, 0);
   }
@@ -26,8 +24,7 @@ class Sheep {
   }
 
   void updateSheep() {
-
-    if (timeFreeze==true) {
+    if (timeFreeze==true && tfCharge>0) {
       pos.x+=0;
       pos.y+=0;
     }

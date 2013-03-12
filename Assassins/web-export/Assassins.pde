@@ -1,3 +1,5 @@
+titleScreen titlescreen;
+
 float peopleSize;
 Player player;
 Sheep[] sheep;
@@ -10,7 +12,8 @@ boolean found;
 boolean timeFreeze;
 
 void setup() {
-  gameState=0;
+  titlescreen = new titleScreen();
+  gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
   size(600, 600);
@@ -38,6 +41,10 @@ void draw() {
   background(255);
   switch(gameState){ 
   case 0:
+    //draw title screen
+    titlescreen.update();
+    break;
+  case 1:
     player.drawPlayer();
     player.update();
 
@@ -109,7 +116,7 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.xPos, target.yPos)<peopleSize/2) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
     println("Found.");
   }
@@ -118,156 +125,195 @@ void mouseClicked() {
 class Player {
 
   float playerSpeed;
-  float xPos;
-  float yPos;
+  PVector pos;
+  int health;
+  boolean alive;
 
   void prime() {
     playerSpeed = 5;
-    peopleSize = 20;
+    pos = new PVector(20, 20);
+    health = 100;
+    alive = true;
   }
 
   void drawPlayer() {
     fill(0, 175, 0);
     stroke(0);
-    ellipse(xPos, yPos, peopleSize, peopleSize);
+    ellipse(pos.x, pos.y, peopleSize, peopleSize);
   }
 
   void update() {
+
+    //collision detection: Player against sheep
+    for (int i=0;i<sheep.length;i++) {   
+      if (pos.dist(sheep[i].pos) < (peopleSize)) {
+        sheep[i].sheepVel.x *= -1; 
+        sheep[i].sheepVel.y *= -1;
+        health-=2;
+        println(health);
+      }
+    }
+    //sheep against sheep
+    for (int i=0;i<sheep.length;i++) {
+      for (int j=0;j<sheep.length;j++) {   
+
+        if (sheep[i].pos.dist(sheep[j].pos) < (peopleSize) && sheep[i] != sheep[j]) {
+          //          sheep[i].sheepVel.x *= -1; 
+          //          sheep[i].sheepVel.y *= -1;
+        }
+      }
+    }
+
+
     if (upTrue==true) {
-      player.yPos -= player.playerSpeed;
+      pos.y -= playerSpeed;
     }
 
     if (downTrue==true) {
-      player.yPos += player.playerSpeed;
+      pos.y += playerSpeed;
     }
 
     if (leftTrue==true) {
-      player.xPos -= player.playerSpeed;
+      pos.x -= playerSpeed;
     }
 
     if (rightTrue==true) {
-      player.xPos += player.playerSpeed;
+      pos.x += playerSpeed;
     }
   }
 }
 
 class Sheep {
 
-  float sheepSpeedX;
-  float sheepSpeedY;
-  float xPos;
-  float yPos;
-  int direction = int(random(3));
+  PVector sheepVel;
+  PVector pos;
+  int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
+  color sheepColor;
 
   void prime() {
-    sheepSpeedX= random(-2,2);
-    sheepSpeedY= random(-2,2);
-    if(sheepSpeedX<1){
-      sheepSpeedX++;
+    sheepVel = new PVector(random(-2, 2), random(-2, 2));
+    if (sheepVel.x<1) {
+      sheepVel.x++;
     }
-    if(sheepSpeedY<1){
-      sheepSpeedY++;
+    if (sheepVel.y<1) {
+      sheepVel.y++;
     }
-    
-    peopleSize = 20;
-    xPos=random(peopleSize, width-peopleSize);
-    yPos=random(peopleSize, height-peopleSize);
+
+    pos = new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    sheepColor = color(175, 175, 0);
   }
   void drawSheep() {
-    fill(175, 175, 0);
+    fill(sheepColor);
     stroke(0);
-    ellipse(xPos, yPos, peopleSize, peopleSize);
+    ellipse(pos.x, pos.y, peopleSize, peopleSize);
   }
 
   void updateSheep() {
-    if(timeFreeze==true){
-      xPos+=0;
-      yPos+=0;
-    }
-  else{
-   xPos+=sheepSpeedX;
-   yPos+=sheepSpeedY;
-  }
 
-    if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
-      sheepSpeedX*=-1;
+    if (timeFreeze==true) {
+      pos.x+=0;
+      pos.y+=0;
+    }
+    else {
+      pos.add(sheepVel);
     }
 
-    if (yPos<=peopleSize/2 || yPos>=height-peopleSize/2) {
-      sheepSpeedY*=-1;
+    if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
+      sheepVel.x*=-1;
     }
-
+    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
+      sheepVel.y*=-1;
+    }
   }
 }
 
 class Target {
 
   float lerp=-.01;
-
-  float targetSpeedX;
-  float targetSpeedY;
-  float xPos;
-  float yPos;
-  int c;
+  PVector pos;
+  PVector targetVel;
+  color targetColor;
 
   void prime() {
-    c=175;
-    targetSpeedX= random(-2, 2);
-    targetSpeedY= random(-2, 2);
-    if (targetSpeedX<1) {
-      targetSpeedX++;
+    targetColor = color(175, 175, 0);
+    targetVel= new PVector(random(-2, 2), random(-2, 2));
+
+    if (targetVel.x<1) {
+      targetVel.x++;
     }
-    if (targetSpeedY<1) {
-      targetSpeedY++;
+    if (targetVel.y<1) {
+      targetVel.y++;
       peopleSize = 20;
     }
-    xPos=random(peopleSize, width-peopleSize);
-    yPos=random(peopleSize, height-peopleSize);
+    pos= new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
   }
 
   void drawTarget() {
-    fill(175, c, 0);
+    fill(targetColor);
     stroke(0);
-    ellipse(xPos, yPos, peopleSize, peopleSize);
+    ellipse(pos.x, pos.y, peopleSize, peopleSize);
   }
 
   void update() {
 
-    if (dist(xPos, yPos, player.xPos, player.yPos) < 200) {
-      xPos = lerp(xPos, player.xPos, lerp);
-      yPos = lerp(yPos, player.yPos, lerp);
-      if (xPos<=peopleSize|| xPos>=width-peopleSize) {
-        lerp/=10;
-      }
 
-      if (yPos<=peopleSize || yPos>=height-peopleSize) {
-        lerp/=5;
-      }
-    }
 
     if (timeFreeze==true) {
-      xPos+=0;
-      yPos+=0;
+      pos.x+=0;
+      pos.y+=0;
     }
     else {
-      xPos+=targetSpeedX;
-      yPos+=targetSpeedY;
+      if (pos.dist(player.pos) < 200) {
+        pos.lerp(player.pos, lerp);
+        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
+          lerp/=10;
+        }
+
+        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
+          lerp/=5;
+        }
+      }
+
+      pos.add(targetVel);
       lerp=-.01;
     }
 
 
-    if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
+    if (pos.x<=peopleSize/2 || pos.x>=width-peopleSize/2) {
       //  lerp=0;
-      targetSpeedX*=-1;
+      targetVel.x*=-1;
     }
 
-    if (yPos<=peopleSize/2 || yPos>=height-peopleSize/2) {
+    if (pos.y<=peopleSize/2 || pos.y>=height-peopleSize/2) {
       // lerp=0;
-      targetSpeedY*=-1;
+      targetVel.y*=-1;
     }
+
 
     if (found==true) {
-      c=0;
+      targetColor = color(175, 0, 0);
+    }
+  }
+}
+
+class titleScreen {
+  PImage screen;
+  titleScreen() {
+    screen = loadImage("assassinsTitleScreen.png");
+  }
+  void update() {
+    //display title screen image
+    image(screen, 0, 0);
+    //check to see if mouse is clicking the start button
+    //the start button on the template is at x = 259, y = 526
+    //the size of the button: width = 231 height = 62
+    if (mousePressed) {
+      if (mouseX>259 && mouseX<259+231 && mouseY>526 && mouseY<526+62) {
+        //start button is pressed
+        //change stage to the next one
+        //reset any timer variable if necessary
+        gameState = 1;
+      }
     }
   }
 }
