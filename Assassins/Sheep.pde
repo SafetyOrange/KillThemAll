@@ -27,9 +27,14 @@ class Sheep {
   }
 
   void updateSheep() {
+    if(timeFreeze==true){
+      xPos+=0;
+      yPos+=0;
+    }
+  else{
    xPos+=sheepSpeedX;
    yPos+=sheepSpeedY;
-
+  }
 
     if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
       sheepSpeedX*=-1;

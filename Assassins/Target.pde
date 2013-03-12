@@ -42,11 +42,17 @@ class Target {
         lerp/=5;
       }
     }
+
+    if (timeFreeze==true) {
+      xPos+=0;
+      yPos+=0;
+    }
     else {
       xPos+=targetSpeedX;
       yPos+=targetSpeedY;
       lerp=-.01;
     }
+
 
     if (xPos<=peopleSize/2 || xPos>=width-peopleSize/2) {
       //  lerp=0;

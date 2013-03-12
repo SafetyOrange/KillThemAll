@@ -7,12 +7,15 @@ int gameState;  //Counter to determine the game state
 
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
+boolean timeFreeze;
 
 void setup() {
   gameState=0;
   smooth();
   frameRate(60);
   size(600, 600);
+  
+  timeFreeze=false;
 
   float peopleSize = 10;
 
@@ -65,6 +68,11 @@ void keyPressed() {
   if (keyCode=='D') {
     rightTrue=true;
   }
+  
+  if (keyCode==' ') {
+    timeFreeze=true;
+  //  println(timeFreeze);
+  }
 }
 
 void keyReleased() {
@@ -89,6 +97,12 @@ void keyReleased() {
   if (keyCode=='M') {
     found=true;
   }
+  
+   if (keyCode==' ') {
+    timeFreeze=false;
+   // println(timeFreeze);
+  }
+  
   if (keyCode=='R') {
     setup();
   }
