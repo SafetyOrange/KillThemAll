@@ -41,6 +41,7 @@ class Player {
     //    }
 
     fill(0, 255, 0);
+    rectMode(CORNER);                         //HEALTH BAR!
     rect(20, 10, health, 5);
 
 
