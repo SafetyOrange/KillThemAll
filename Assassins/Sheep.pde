@@ -12,13 +12,14 @@ class Sheep {
 
   boolean wasStuck = false;    //Check to see if it's recently been stuck
 
-  int coolDown = millis();
-  int stuck = millis();
+  int coolDown;
+  int stuck;
+  int time;
 
-  int coolTime = 3000;
+  int coolTime = 5000;
 
-  void prime() {
-
+  void prime() { 
+    
     sheepVel = new PVector(random(-2, 2), random(-2, 2));
     if (sheepVel.x<1) {
       sheepVel.x++;
@@ -37,6 +38,7 @@ class Sheep {
   }
 
   void updateSheep() {
+time=millis();
 
 
     if (timeFreeze==true && tfCharge>0) {

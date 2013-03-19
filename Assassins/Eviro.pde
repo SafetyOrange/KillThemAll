@@ -9,8 +9,6 @@ class Enviro {
 
   boolean debug = true;    //When activated, this will show the range of the distraction
 
-  int stuckTime = millis();
-
   void prime(PVector _pos, float _size, float _diam, color _c, float _coolness) {
     pos=_pos;
     size=_size;
@@ -35,21 +33,21 @@ class Enviro {
 
       for (int i=0; i<sheep.size(); i++) {
         Sheep temp = sheep.get(i); 
-        print(stuck);
+
         if (temp.wasStuck==false && pos.dist(temp.pos)<diam/2) {
-          temp.stuck=0;
           temp.sheepVel.x=0;
           temp.sheepVel.y=0;
+          temp.stuck=temp.time;
           temp.wasStuck=true;
+          println("Caught");
         }
-        if(temp.stuck>=temp.stuckTime){
-          temp.stuck=0;
+        if (temp.time==temp.stuck+temp.stuckTime) {
           println("Free");
-          temp.coolDown=0;
+          temp.coolDown=temp.time;
           temp.sheepVel = new PVector(random(-2, 2), random(-2, 2));
         }
-          if (temp.coolDown==temp.coolTime) {
-                  println("Vulnerable");
+        if (temp.time==temp.coolDown+temp.coolTime) {
+          println("Vulnerable");
           temp.wasStuck=false;
         }
       }
