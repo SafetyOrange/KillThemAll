@@ -2,12 +2,10 @@ titleScreen titlescreen;
 
 float peopleSize;
 Player player;
-Sheep[] sheep;
+ArrayList<Sheep> sheep;
 Target target;
 
 int gameState;  //Counter to determine the game state
-
-int sheepNum = 100; //Number of bystanders
 
 int spawnBuffer = 60; //"Safe-Zone" buffer
 
@@ -30,17 +28,13 @@ void setup() {
 
   player = new Player();
   player.prime();
+  
+  sheep = new ArrayList<Sheep>(); 
 
-  sheep = new Sheep[sheepNum];
-  for (int i=0;i<sheep.length;i++) {
-    sheep[i] = new Sheep();
-    sheep[i].prime();
+  target = new Target();
+  target.prime();
 
-    target = new Target();
-    target.prime();
-
-    found=false;
-  }
+  found=false;
 }
 
 void draw() {

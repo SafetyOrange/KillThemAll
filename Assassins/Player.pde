@@ -21,21 +21,20 @@ class Player {
   void update() {
 
     //collision detection: Player against sheep
-    for (int i=0;i<sheep.length;i++) {   
-      if (pos.dist(sheep[i].pos) < (peopleSize)) {
-        sheep[i].sheepVel.x *= -1; 
-        sheep[i].sheepVel.y *= -1;
-        if(health>0)  health-=1;
-//        println(health);
-      }
-    }
+//    for (int i=0;i<sheep.length;i++) {    //commenting out while working on arraylist
+//      if (pos.dist(sheep[i].pos) < (peopleSize)) {
+//        sheep[i].sheepVel.x *= -1; 
+//        sheep[i].sheepVel.y *= -1;
+//        if(health>0)  health-=1;
+//      }
+//    }
     
     fill(0,255,0);
     rect(20, 10, health, 5);
 
     
     //sheep against sheep
-    for (int i=0;i<sheep.length;i++) {
+ /*   for (int i=0;i<sheep.length;i++) {
       for (int j=0;j<sheep.length;j++) {   
 
         if (sheep[i].pos.dist(sheep[j].pos) < (peopleSize) && sheep[i] != sheep[j]) {
@@ -44,6 +43,7 @@ class Player {
         }
       }
     }
+    */
 
 
     if (upTrue==true) {
