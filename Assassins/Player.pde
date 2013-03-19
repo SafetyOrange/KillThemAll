@@ -27,12 +27,13 @@ class Player {
 
 
     //COLLISION DETECTION
-    //sheep against sheep
+    //sheep against player
     for (int i=0; i<sheep.size(); i++) {     
       Sheep tempSheep = sheep.get(i);
       if (pos.dist(tempSheep.pos) < peopleSize) {
         tempSheep.sheepVel.x *=-1;
-        tempSheep.sheepVel.y*=-1;
+        tempSheep.sheepVel.y *=-1;
+        if (health>0)  health-=1;
       }
     }
 
@@ -48,7 +49,7 @@ class Player {
         }
       }
     }    
-    
+
     //PLAYER MOVEMENT 
     if (upTrue==true) {
       pos.y -= playerSpeed;
