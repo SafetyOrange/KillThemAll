@@ -52,7 +52,7 @@ class Enviro {
           temp.wasStuck=true;
     //      println("Caught");
         }
-        if (temp.time==temp.stuck+temp.stuckTime) {
+        if (temp.time>=temp.stuck+temp.stuckTime-20 && temp.time<=temp.stuck+temp.stuckTime+20) { //WTF
     //      println("Free");
           temp.coolDown=temp.time;
           temp.sheepVel = new PVector(random(-2, 2), random(-2, 2));
