@@ -23,7 +23,7 @@ void setup() {
   gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
-  size(600, 600);
+  size(900, 600);
 
   timeFreeze=false;
   tfCharge = 100;
