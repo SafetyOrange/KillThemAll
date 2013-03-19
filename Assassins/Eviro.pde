@@ -57,7 +57,7 @@ class Enviro {
           temp.sheepVel = new PVector(random(-2, 2), random(-2, 2));
           temp.coolDown=temp.time;
         }
-        if (temp.time==temp.coolDown+temp.coolTime) {
+        if (temp.time>=temp.coolDown+temp.coolTime-20 && temp.time<=temp.coolDown+temp.coolTime+20) {
    //       println("Vulnerable");
           temp.wasStuck=false;
         }
