@@ -7,7 +7,7 @@ class Enviro {
   int coolness;
 
 
-  boolean debug = false;    //When activated, this will show the range of the distraction
+  boolean debug = true;    //When activated, this will show the range of the distraction
 
   void prime(PVector _pos, float _size, float _diam, color _c, int _coolness) {
     pos=_pos;
