@@ -68,9 +68,11 @@ void draw() {
     fill(0);
     rectMode(CORNER);                        //TIMEFREEZE BAR
     rect(20, 20, tfCharge, 5);
-    println(tfCharge);
+   // println(tfCharge);
     break;
   }
+  
+  
 }
 
 void keyPressed() {

@@ -2,12 +2,23 @@ class Sheep {
 
   PVector sheepVel;
   PVector pos;
-  int direction = int(random(3)); //this isn't used anywhere? Were you planning to?
-  color sheepColor;
   
+  
+ int stuckTime=3000;
+  
+  
+  
+  color sheepColor;
+
+  boolean wasStuck = false;    //Check to see if it's recently been stuck
+
+  int coolDown = millis();
+  int stuck = millis();
+
+  int coolTime = 3000;
 
   void prime() {
-    
+
     sheepVel = new PVector(random(-2, 2), random(-2, 2));
     if (sheepVel.x<1) {
       sheepVel.x++;
@@ -26,6 +37,8 @@ class Sheep {
   }
 
   void updateSheep() {
+
+
     if (timeFreeze==true && tfCharge>0) {
       pos.x+=0;
       pos.y+=0;
@@ -40,6 +53,16 @@ class Sheep {
     if (pos.y<=(peopleSize/2)+spawnBuffer || pos.y>=height-peopleSize/2) {
       sheepVel.y*=-1;
     }
+
+
+//    if (wasStuck==true) {
+//      coolDown=0;
+//      sheepVel = new PVector(random(-2, 2), random(-2, 2));
+//    }
+//
+//    if (coolDown==coolTime) {
+//      wasStuck=false;
+//    }
   }
 }
 
