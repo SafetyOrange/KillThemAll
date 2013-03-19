@@ -54,8 +54,8 @@ class Enviro {
         }
         if (temp.time>=temp.stuck+temp.stuckTime-20 && temp.time<=temp.stuck+temp.stuckTime+20) { //WTF
     //      println("Free");
-          temp.coolDown=temp.time;
           temp.sheepVel = new PVector(random(-2, 2), random(-2, 2));
+          temp.coolDown=temp.time;
         }
         if (temp.time==temp.coolDown+temp.coolTime) {
    //       println("Vulnerable");
