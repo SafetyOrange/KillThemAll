@@ -3,11 +3,6 @@ class Sheep {
   PVector sheepVel;
   PVector pos;
   
-  
- int stuckTime=3000;
-  
-  
-  
   color sheepColor;
 
   boolean wasStuck = false;    //Check to see if it's recently been stuck
@@ -16,7 +11,8 @@ class Sheep {
   int stuck;
   int time;
 
-  int coolTime = 5000;
+  int coolTime;
+  int stuckTime;
 
   void prime() { 
     
