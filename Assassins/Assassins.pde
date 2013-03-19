@@ -140,7 +140,7 @@ void mouseClicked() {
   for (int i=0; i<sheep.size(); i++) {
     Sheep temp = sheep.get(i); 
     if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2) {
-      if (temp.wasStuck==false && pos.dist(temp.pos)<diam/2) {
+      if (temp.wasStuck==false && enviro.pos.dist(temp.pos)<enviro.diam/2) {
         println("Caught");
       }
       if (temp.time==temp.stuck+temp.stuckTime) {
