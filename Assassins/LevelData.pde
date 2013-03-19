@@ -16,5 +16,9 @@ void lev1() {
 
   target.drawTarget();
   target.update();
+  
+  enviro.prime(new PVector(200,200), 20, 150, #5FD823);
+  enviro.update();
+  
 }
 

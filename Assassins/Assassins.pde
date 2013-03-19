@@ -1,17 +1,19 @@
 titleScreen titlescreen;
 
-float peopleSize;
+
 Player player;
 ArrayList<Sheep> sheep;
 Target target;
+Enviro enviro;
 
 int gameState;  //Counter to determine the game state
-
 int spawnBuffer = 60; //"Safe-Zone" buffer
 
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
+
+float peopleSize;
 float tfCharge;
 
 void setup() {
@@ -33,6 +35,8 @@ void setup() {
 
   target = new Target();
   target.prime();
+  
+  enviro = new Enviro();
 
   found=false;
 }
