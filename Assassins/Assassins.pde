@@ -51,16 +51,7 @@ void draw() {
     titlescreen.update();
     break;
   case 1:
-    player.drawPlayer();
-    player.update();
-
-    for (int i=0;i<sheep.length;i++) {
-      sheep[i].drawSheep();
-      sheep[i].updateSheep();
-    }
-
-    target.drawTarget();
-    target.update();
+   lev1(); // Level 1 == LEV1
 
 
     if (timeFreeze==true) {
