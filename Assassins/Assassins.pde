@@ -140,15 +140,17 @@ void mouseClicked() {
   for (int i=0; i<sheep.size(); i++) {
     Sheep temp = sheep.get(i); 
     if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2) {
-      if (temp.wasStuck==false && enviro.pos.dist(temp.pos)<enviro.diam/2) {
+    
+      if (temp.wasStuck==true && enviro.pos.dist(temp.pos)<enviro.diam/2) {
         println("Caught");
       }
-      if (temp.time==temp.stuck+temp.stuckTime) {
+      if (temp.time>=temp.stuck+temp.stuckTime) {
         println("Free");
       }
-      if (temp.time==temp.coolDown+temp.coolTime) {
+      if (temp.time>=temp.coolDown+temp.coolTime) {
         println("Vulnerable");
       }
+      
     }
   }
 }
