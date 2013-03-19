@@ -1,0 +1,8 @@
+TO DO 
+
+Fix target
+Collision 
+Make target like certain environmental things
+Playtest 
+Interaction--attack, whatever you do to the target. 
+Boss level--possibly black friday
