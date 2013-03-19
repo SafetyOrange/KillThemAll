@@ -26,6 +26,8 @@ class Sheep {
 
     pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
     sheepColor = color(175, 175, 0);
+    stuck=20000;
+    coolTime=20000;
   }
   void drawSheep() {
     fill(sheepColor);
