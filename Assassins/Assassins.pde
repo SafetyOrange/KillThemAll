@@ -72,6 +72,9 @@ void draw() {
     rect(20, 20, tfCharge, 5);
     // println(tfCharge);
     break;
+  case 2:
+    //Game Over Screen. Will change case number when we have more levels
+    break;
   }
 }
 
@@ -141,16 +144,15 @@ void mouseClicked() {
     Sheep temp = sheep.get(i); 
     if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2) {
       println(temp.wasStuck);
-//      if (temp.wasStuck==true && enviro.pos.dist(temp.pos)<enviro.diam/2) {
-//        println("Caught");
-//      }
-//      if (temp.time>=temp.stuck+temp.stuckTime) {
-//        println("Free");
-//      }
-//      if (temp.time>=temp.coolDown+temp.coolTime) {
-//        println("Vulnerable");
-//      }
-      
+      //      if (temp.wasStuck==true && enviro.pos.dist(temp.pos)<enviro.diam/2) {
+      //        println("Caught");
+      //      }
+      //      if (temp.time>=temp.stuck+temp.stuckTime) {
+      //        println("Free");
+      //      }
+      //      if (temp.time>=temp.coolDown+temp.coolTime) {
+      //        println("Vulnerable");
+      //      }
     }
   }
 }

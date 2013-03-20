@@ -25,7 +25,9 @@ class Player {
     rectMode(CORNER);                        
     rect(20, 10, health, 5);
 
-
+    //GAME OVER
+    if(health<1) gameState=2;
+    
     //COLLISION DETECTION
     //sheep against player
     for (int i=0; i<sheep.size(); i++) {     
