@@ -11,8 +11,10 @@ TO DO
 
 
 Fix target
+Dynamic level constraints
+Spamming Spacebar issue
 Collision 
 Make target like certain environmental things
-Playtest 
+!!!! Playtest !!!!
 Interaction--attack, whatever you do to the target. 
 Boss level--possibly black friday
