@@ -8,15 +8,9 @@ class Target {
   void prime() {
     targetColor = color(175, 175, 0);
     targetVel= new PVector(random(-2, 2), random(-2, 2));
+    peopleSize = 20;
 
-    if (targetVel.x<1) {
-      targetVel.x++;
-    }
-    if (targetVel.y<1) {
-      targetVel.y++;
-      peopleSize = 20;
-    }
-    pos= new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
   }
 
   void drawTarget() {
@@ -32,15 +26,16 @@ class Target {
       pos.y+=0;
     }
     else {
-      if (pos.dist(player.pos) < 200) {
+      
+      if (pos.dist(player.pos) < 100 && player.pos.x >50+spawnBuffer && player.pos.x<width-50 && player.pos.y>50 && player.pos.y<height-50) {
         pos.lerp(player.pos, lerp);
-        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
-          lerp/=10;
-        }
-
-        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
-          lerp/=5;
-        }
+//        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
+//          lerp/=10;
+//        }
+//
+//        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
+//          lerp/=5;
+//        }
       }
 
       pos.add(targetVel);
@@ -52,7 +47,7 @@ class Target {
       targetVel.x*=-1;
     }
 
-    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= peopleSize/2) {
+    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= height-peopleSize/2) {
       // lerp=0;
       targetVel.y*=-1;
     }
