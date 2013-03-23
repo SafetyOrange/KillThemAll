@@ -66,6 +66,7 @@ void draw() {
     text("Press enter for next level", width/2, height/2);
     if (nextScreen) {
       gameState++;
+      found=false;
     }
     break;
   case 3:
