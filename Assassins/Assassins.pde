@@ -69,13 +69,18 @@ void draw() {
     lev2();
     break;
   case 4: 
-    //draw transition screen
-    break;
+    fill(0);
+    textAlign(CENTER);
+    textSize(32);
+    text("Click for next level", width/2,height/2);
+    if(mousePressed){
+      gameState++;
+    }    break;
   case 5: 
     //Level 3
+//    lev3();
     break;
   case 6:
-    //Game Over Screen.
     break;
   case 7: 
     //Win Screen
