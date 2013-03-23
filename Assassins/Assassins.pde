@@ -91,6 +91,23 @@ void draw() {
     //Win Screen
     break; 
   }
+  if (timeFreeze==true) {
+    tfCharge-=1;
+    if (tfCharge<0) {
+      tfCharge=0;
+    }
+  }
+  else {
+    tfCharge+=1;
+    if (tfCharge>100) {
+      tfCharge=100;
+    }
+  }
+
+  fill(0);
+  rectMode(CORNER);                        //TIMEFREEZE BAR
+  rect(20, 20, tfCharge, 5);
+  // println(tfCharge);
 }
 
 void keyPressed() {
