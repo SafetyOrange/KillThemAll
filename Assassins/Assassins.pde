@@ -11,6 +11,7 @@ int spawnBuffer = 60; //"Safe-Zone" buffer
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
+boolean nextScreen;
 
 float peopleSize;
 float tfCharge;
@@ -27,6 +28,7 @@ void setup() {
   size(900, 600);
 
   timeFreeze=false;
+  nextScreen=false;
   tfCharge = 100;
 
   float peopleSize = 10;
@@ -61,8 +63,8 @@ void draw() {
     fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("Click for next level", width/2,height/2);
-    if(mousePressed){
+    text("Press enter for next level", width/2,height/2);
+    if(nextScreen){
       gameState++;
     }
     break;
@@ -70,13 +72,15 @@ void draw() {
     lev2();
     break;
   case 4: 
-    fill(0);
+    background(0);
+    fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("Click for next level", width/2,height/2);
-    if(mousePressed){
+    text("Press enter for next level", width/2,height/2);
+    if(nextScreen){
       gameState++;
-    }    break;
+    }    
+    break;
   case 5: 
     //Level 3
 //    lev3();
@@ -110,6 +114,10 @@ void keyPressed() {
     timeFreeze=true;
     //  println(timeFreeze);
   }
+  
+  if(keyCode==ENTER){
+    nextScreen=true;
+  }
 }
 
 void keyReleased() {
@@ -142,6 +150,10 @@ void keyReleased() {
 
   if (keyCode=='R') {
     setup();
+  }
+  
+  if(keyCode==ENTER){
+    nextScreen=false;
   }
 }
 
