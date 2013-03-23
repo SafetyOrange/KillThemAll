@@ -25,6 +25,8 @@ void lev1() {
 }
 
 void lev2() {
+  
+  
   player.health=100;
   player.drawPlayer();
   player.update();

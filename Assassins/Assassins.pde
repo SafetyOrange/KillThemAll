@@ -149,6 +149,8 @@ void mouseClicked() {
     found=true;
     gameState++;
     println("Found.");
+    found=false;
+    target.prime();
   }
 
   for (int i=0; i<sheep.size(); i++) {
