@@ -1,4 +1,5 @@
 titleScreen titlescreen;
+PFont font;
 
 
 Player player;
@@ -20,6 +21,8 @@ boolean displayInfo; //for debugging
 
 void setup() {
   titlescreen = new titleScreen();
+  font = loadFont("fontname.vlw");
+
   gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
@@ -45,6 +48,7 @@ void setup() {
 
 void draw() {
   background(255);
+  println(gameState);
   switch(gameState) { 
   case 0:
     //draw title screen
@@ -52,29 +56,31 @@ void draw() {
     break;
   case 1:
     lev1(); // Level 1 == LEV1
-
-
-      if (timeFreeze==true) {
-      tfCharge-=1;
-      if (tfCharge<0) {
-        tfCharge=0;
-      }
-    }
-    else {
-      tfCharge+=1;
-      if (tfCharge>100) {
-        tfCharge=100;
-      }
-    }
-
-    fill(0);
-    rectMode(CORNER);                        //TIMEFREEZE BAR
-    rect(20, 20, tfCharge, 5);
-    // println(tfCharge);
     break;
   case 2:
-    //Game Over Screen. Will change case number when we have more levels
+    //draw transition screen
+    textFont(font, 32);
+    fill(0);
+    text("Click for next level", width/2-170,height/2);
+    if(mousePressed){
+      gameState++;
+    }
     break;
+  case 3:
+    lev2();
+    break;
+  case 4: 
+    //draw transition screen
+    break;
+  case 5: 
+    //Level 3
+    break;
+  case 6:
+    //Game Over Screen.
+    break;
+  case 7: 
+    //Win Screen
+    break; 
   }
 }
 
@@ -137,7 +143,7 @@ void keyReleased() {
 void mouseClicked() {
   if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
-    println("Found.");
+    gameState++;
   }
 
   for (int i=0; i<sheep.size(); i++) {
