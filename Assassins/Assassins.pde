@@ -52,40 +52,30 @@ void draw() {
     break;
   case 1:
     lev1(); // Level 1 == LEV1
+
+
+      if (timeFreeze==true) {
+      tfCharge-=1;
+      if (tfCharge<0) {
+        tfCharge=0;
+      }
+    }
+    else {
+      tfCharge+=1;
+      if (tfCharge>100) {
+        tfCharge=100;
+      }
+    }
+
+    fill(0);
+    rectMode(CORNER);                        //TIMEFREEZE BAR
+    rect(20, 20, tfCharge, 5);
+    // println(tfCharge);
     break;
   case 2:
-    lev2();
-    break;
-
-  case 3:
-    break;
-
-  case 4:
-    //Game Over Screen. 
-    break;
-
-  case 5:
-    //Win Screen.
+    //Game Over Screen. Will change case number when we have more levels
     break;
   }
-
-  if (timeFreeze==true) {
-    tfCharge-=1;
-    if (tfCharge<0) {
-      tfCharge=0;
-    }
-  }
-  else {
-    tfCharge+=1;
-    if (tfCharge>100) {
-      tfCharge=100;
-    }
-  }
-
-  fill(0);
-  rectMode(CORNER);                        //TIMEFREEZE BAR
-  rect(20, 20, tfCharge, 5);
-  // println(tfCharge);
 }
 
 void keyPressed() {
@@ -147,7 +137,6 @@ void keyReleased() {
 void mouseClicked() {
   if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
-    gameState++;
     println("Found.");
   }
 
