@@ -5,11 +5,22 @@ class Target {
   PVector targetVel;
   color targetColor;
 
+  //environmental things
+  boolean wasStuck = false;    //Check to see if it's recently been stuck
+  int coolDown;
+  int stuck;
+  int time;
+  int coolTime;
+  int stuckTime;
+
   void prime() {
     targetColor = color(175, 175, 0);
     targetVel= new PVector(random(-2, 2), random(-2, 2));
     peopleSize = 20;
     pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
+    //environmental
+    stuck=20000;
+    coolTime=20000;
   }
 
   void drawTarget() {
@@ -19,6 +30,8 @@ class Target {
   }
 
   void update() {
+    time=millis();
+
 
     if (timeFreeze==true) {
       pos.x+=0;
@@ -26,7 +39,7 @@ class Target {
     }
     else {
       if (pos.dist(player.pos) < 200 && pos.x >10+spawnBuffer && pos.x<width-10 && pos.y>10 && pos.y<height-10) {        
-            pos.lerp(player.pos, lerp);
+        pos.lerp(player.pos, lerp);
       }
 
       pos.add(targetVel);
@@ -46,7 +59,7 @@ class Target {
     if (found==true) {
       targetColor = color(175, 0, 0);
     }
-    else if(found==false){
+    else if (found==false) {
       targetColor = color(175, 175, 0);
     }
   }

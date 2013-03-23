@@ -21,6 +21,10 @@ class Enviro {
         temp.stuckTime = coolness*1000;
         temp.coolTime = (coolness+2)*1000;
     }
+    
+     //target
+     target.stuckTime=coolness*1000;
+     target.coolTime=(coolness+2)*1000;
   }
 
 
@@ -63,6 +67,23 @@ class Enviro {
           temp.wasStuck=false;
         }
       }
+      
+      //effect of hazards on target
+      if(target.wasStuck==false && pos.dist(target.pos)<diam/2){
+        target.targetVel.x=0;
+        target.targetVel.y=0;
+        target.stuck=target.time;
+        target.wasStuck=true;
+      }
+      if(target.time>=target.stuck+target.stuckTime-20 && target.time<=target.stuck+target.stuckTime+20){
+        target.targetVel = new PVector(random(-2,2), random(-2,2));
+        target.coolDown=target.time;
+      }
+      if(target.time>=target.coolDown+target.coolTime-20 && target.time<= target.coolDown+target.coolTime+20){
+        target.wasStuck=false;
+      }
+      
+      
     }
   }
 
