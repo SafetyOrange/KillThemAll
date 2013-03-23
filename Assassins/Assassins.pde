@@ -1,5 +1,6 @@
 titleScreen titlescreen;
 
+
 Player player;
 ArrayList<Sheep> sheep;
 Target target;
@@ -11,7 +12,6 @@ int spawnBuffer = 60; //"Safe-Zone" buffer
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
-boolean nextScreen;
 
 float peopleSize;
 float tfCharge;
@@ -20,15 +20,12 @@ boolean displayInfo; //for debugging
 
 void setup() {
   titlescreen = new titleScreen();
-
-
   gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
   size(900, 600);
 
   timeFreeze=false;
-  nextScreen=false;
   tfCharge = 100;
 
   float peopleSize = 10;
@@ -48,7 +45,6 @@ void setup() {
 
 void draw() {
   background(255);
-  println(gameState);
   switch(gameState) { 
   case 0:
     //draw title screen
@@ -58,40 +54,21 @@ void draw() {
     lev1(); // Level 1 == LEV1
     break;
   case 2:
-    //draw transition screen
-    background(0);
-    fill(255);
-    textAlign(CENTER);
-    textSize(32);
-    text("Press enter for next level", width/2, height/2);
-    if (nextScreen) {
-      gameState++;
-      found=false;
-    }
-    break;
-  case 3:
     lev2();
     break;
-  case 4: 
-    background(0);
-    fill(255);
-    textAlign(CENTER);
-    textSize(32);
-    text("Press enter for next level", width/2, height/2);
-    if (nextScreen) {
-      gameState++;
-    }    
+
+  case 3:
     break;
-  case 5: 
-    //Level 3
-    //    lev3();
+
+  case 4:
+    //Game Over Screen. 
     break;
-  case 6:
-    break;
-  case 7: 
-    //Win Screen
+
+  case 5:
+    //Win Screen.
     break;
   }
+
   if (timeFreeze==true) {
     tfCharge-=1;
     if (tfCharge<0) {
@@ -132,10 +109,6 @@ void keyPressed() {
     timeFreeze=true;
     //  println(timeFreeze);
   }
-
-  if (keyCode==ENTER) {
-    nextScreen=true;
-  }
 }
 
 void keyReleased() {
@@ -169,17 +142,13 @@ void keyReleased() {
   if (keyCode=='R') {
     setup();
   }
-
-  if (keyCode==ENTER) {
-    nextScreen=false;
-  }
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize) {
     found=true;
     gameState++;
-    player.pos = new PVector(width/2, 20); //reset player location
+    println("Found.");
   }
 
   for (int i=0; i<sheep.size(); i++) {
