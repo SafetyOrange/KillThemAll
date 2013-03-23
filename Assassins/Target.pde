@@ -16,7 +16,7 @@ class Target {
       targetVel.y++;
       peopleSize = 20;
     }
-    pos= new PVector(random(peopleSize, width-peopleSize), random(peopleSize, height-peopleSize));
+    pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
   }
 
   void drawTarget() {
