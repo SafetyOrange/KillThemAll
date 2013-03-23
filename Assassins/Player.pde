@@ -5,20 +5,11 @@ class Player {
   int health;
   boolean alive;
 
-  int prevPosNum = 60;
-  PVector prevPosArray[] = new PVector[prevPosNum];
-  
-  PVector prevPos =new PVector(0,0);
-  PVector vel = new PVector(0,0);
-
   void prime() {
     playerSpeed = 5;
     pos = new PVector(width/2, 20);
     health = 100;
     alive = true;
-    for(int i=0; i< prevPosNum; i++){
-      prevPosArray[i] = new PVector(0,0);
-    }
   }
 
   void drawPlayer() {
@@ -29,21 +20,14 @@ class Player {
 
   void update() {
 
-    // Store last 60 positions of player in array 
-    int which = frameCount % prevPosNum;
-    prevPosArray[which] = new PVector(pos.x, pos.y);
-    prevPos = prevPosArray[1];
-    vel = PVector.sub(pos,prevPos);
-    vel.normalize();
-
     //HEALTH BAR!
     fill(0, 255, 0);
     rectMode(CORNER);                        
     rect(20, 10, health, 5);
 
     //GAME OVER
-//    if (health<1) gameState=4; //commented out for debugging
-
+    if(health<1) gameState=2;
+    
     //COLLISION DETECTION
     //sheep against player
     for (int i=0; i<sheep.size(); i++) {     
@@ -51,7 +35,7 @@ class Player {
       if (pos.dist(tempSheep.pos) < peopleSize) {
         tempSheep.sheepVel.x *=-1;
         tempSheep.sheepVel.y *=-1;
-        if (health>0)  health-=5;
+        if (health>0)  health-=1;
       }
     }
 
