@@ -9,7 +9,6 @@ class Target {
     targetColor = color(175, 175, 0);
     targetVel= new PVector(random(-2, 2), random(-2, 2));
     peopleSize = 20;
-
     pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
   }
 
@@ -26,16 +25,19 @@ class Target {
       pos.y+=0;
     }
     else {
-      
-      if (pos.dist(player.pos) < 100 && player.pos.x >50+spawnBuffer && player.pos.x<width-50 && player.pos.y>50 && player.pos.y<height-50) {
-        pos.lerp(player.pos, lerp);
-//        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
-//          lerp/=10;
-//        }
-//
-//        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
-//          lerp/=5;
-//        }
+      if (pos.dist(player.pos) < 200 && pos.x >10+spawnBuffer && pos.x<width-10 && pos.y>10 && pos.y<height-10) {        
+        targetVel = player.vel;
+        targetVel.add(1, 1, 0);
+
+
+//                pos.lerp(player.pos, lerp);
+        //        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
+        //          lerp/=10;
+        //        }
+        //
+        //        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
+        //          lerp/=5;
+        //        }
       }
 
       pos.add(targetVel);
