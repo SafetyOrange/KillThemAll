@@ -8,14 +8,7 @@ class Target {
   void prime() {
     targetColor = color(175, 175, 0);
     targetVel= new PVector(random(-2, 2), random(-2, 2));
-
-    if (targetVel.x<1) {
-      targetVel.x++;
-    }
-    if (targetVel.y<1) {
-      targetVel.y++;
-      peopleSize = 20;
-    }
+    peopleSize = 20;
     pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
   }
 
