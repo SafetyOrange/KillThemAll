@@ -179,13 +179,10 @@ void mouseClicked() {
   if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
     gameState++;
-<<<<<<< HEAD
     println("Found.");
     found=false;
     target.prime();
-=======
     player.pos = new PVector(width/2, 20); //reset player location
->>>>>>> parent of 1839ff3... Difficulty raised in movement; lowered in clicking
   }
 
   for (int i=0; i<sheep.size(); i++) {

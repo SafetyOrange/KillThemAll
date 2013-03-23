@@ -26,13 +26,7 @@ void lev1() {
 }
 
 void lev2() {
-<<<<<<< HEAD
-  
-  
-  player.health=100;
-=======
   player.health=100; //reset health
->>>>>>> parent of 1839ff3... Difficulty raised in movement; lowered in clicking
   player.drawPlayer();
   player.update();
 

@@ -26,18 +26,7 @@ class Target {
     }
     else {
       if (pos.dist(player.pos) < 200 && pos.x >10+spawnBuffer && pos.x<width-10 && pos.y>10 && pos.y<height-10) {        
-        targetVel = player.vel;
-        targetVel.add(1, 1, 0);
-
-
-//                pos.lerp(player.pos, lerp);
-        //        if (pos.x<=peopleSize|| pos.x>=width-peopleSize) {
-        //          lerp/=10;
-        //        }
-        //
-        //        if (pos.y<=peopleSize || pos.y>=height-peopleSize) {
-        //          lerp/=5;
-        //        }
+            pos.lerp(player.pos, lerp);
       }
 
       pos.add(targetVel);
