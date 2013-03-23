@@ -2,7 +2,7 @@ void lev1() {
   player.drawPlayer();
   player.update();
 
- while(sheep.size() <50) { //add sheep until there are 100 of them. Prime them. 
+ while(sheep.size() <10) { //add sheep until there are 100 of them. Prime them. 
     Sheep temp = new Sheep();
     temp.prime();
     sheep.add(temp);
@@ -30,7 +30,7 @@ void lev2() {
   player.drawPlayer();
   player.update();
 
- while(sheep.size() <50) { //add sheep until there are 100 of them. Prime them. 
+ while(sheep.size() <25) { //add sheep until there are 100 of them. Prime them. 
     Sheep temp = new Sheep();
     temp.prime();
     sheep.add(temp);

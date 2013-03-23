@@ -1,6 +1,4 @@
 titleScreen titlescreen;
-PFont font;
-
 
 Player player;
 ArrayList<Sheep> sheep;
@@ -21,7 +19,7 @@ boolean displayInfo; //for debugging
 
 void setup() {
   titlescreen = new titleScreen();
-  font = loadFont("fontname.vlw");
+
 
   gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
@@ -59,9 +57,10 @@ void draw() {
     break;
   case 2:
     //draw transition screen
-    textFont(font, 32);
     fill(0);
-    text("Click for next level", width/2-170,height/2);
+    textAlign(CENTER);
+    textSize(32);
+    text("Click for next level", width/2,height/2);
     if(mousePressed){
       gameState++;
     }
