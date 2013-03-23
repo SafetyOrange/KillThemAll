@@ -42,7 +42,7 @@ class Player {
     rect(20, 10, health, 5);
 
     //GAME OVER
-//    if (health<1) gameState=2; //commented out for debugging
+//    if (health<1) gameState=4; //commented out for debugging
 
     //COLLISION DETECTION
     //sheep against player
