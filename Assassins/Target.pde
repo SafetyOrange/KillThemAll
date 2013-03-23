@@ -52,7 +52,7 @@ class Target {
       targetVel.x*=-1;
     }
 
-    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= peopleSize/2) {
+    if (pos.y<=peopleSize/2 + spawnBuffer || pos.y >= height-peopleSize/2) {
       // lerp=0;
       targetVel.y*=-1;
     }
