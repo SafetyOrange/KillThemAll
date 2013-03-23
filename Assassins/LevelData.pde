@@ -26,7 +26,8 @@ void lev1() {
 }
 
 void lev2() {
-  player.health=100;
+  player.health=100; //reset health
+  player.pos = new PVector(width/2, 20); //reset player location
   player.drawPlayer();
   player.update();
 
