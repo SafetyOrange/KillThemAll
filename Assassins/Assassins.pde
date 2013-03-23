@@ -63,8 +63,8 @@ void draw() {
     fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("Press enter for next level", width/2,height/2);
-    if(nextScreen){
+    text("Press enter for next level", width/2, height/2);
+    if (nextScreen) {
       gameState++;
     }
     break;
@@ -76,20 +76,20 @@ void draw() {
     fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("Press enter for next level", width/2,height/2);
-    if(nextScreen){
+    text("Press enter for next level", width/2, height/2);
+    if (nextScreen) {
       gameState++;
     }    
     break;
   case 5: 
     //Level 3
-//    lev3();
+    //    lev3();
     break;
   case 6:
     break;
   case 7: 
     //Win Screen
-    break; 
+    break;
   }
   if (timeFreeze==true) {
     tfCharge-=1;
@@ -131,8 +131,8 @@ void keyPressed() {
     timeFreeze=true;
     //  println(timeFreeze);
   }
-  
-  if(keyCode==ENTER){
+
+  if (keyCode==ENTER) {
     nextScreen=true;
   }
 }
@@ -168,8 +168,8 @@ void keyReleased() {
   if (keyCode=='R') {
     setup();
   }
-  
-  if(keyCode==ENTER){
+
+  if (keyCode==ENTER) {
     nextScreen=false;
   }
 }
@@ -178,6 +178,7 @@ void mouseClicked() {
   if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
     found=true;
     gameState++;
+    player.pos = new PVector(width/2, 20); //reset player location
   }
 
   for (int i=0; i<sheep.size(); i++) {
