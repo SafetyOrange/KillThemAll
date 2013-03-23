@@ -176,7 +176,7 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize/2) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize) {
     found=true;
     gameState++;
     println("Found.");

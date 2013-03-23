@@ -35,7 +35,7 @@ class Player {
       if (pos.dist(tempSheep.pos) < peopleSize) {
         tempSheep.sheepVel.x *=-1;
         tempSheep.sheepVel.y *=-1;
-        if (health>0)  health-=1;
+        if (health>0)  health-=5;
       }
     }
 
