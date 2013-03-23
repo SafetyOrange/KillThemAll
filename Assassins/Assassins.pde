@@ -57,7 +57,8 @@ void draw() {
     break;
   case 2:
     //draw transition screen
-    fill(0);
+    background(0);
+    fill(255);
     textAlign(CENTER);
     textSize(32);
     text("Click for next level", width/2,height/2);
