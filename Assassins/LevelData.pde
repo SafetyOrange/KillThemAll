@@ -17,12 +17,14 @@ void lev1() {
 
   target.drawTarget();
   target.update();
+  target.attraction(enviro);
+
   
   enviro.prime(new PVector(100,500), 20, 150, #5FD823, 2);
   enviro.update();
   
-  enviro.prime(new PVector(500, 200), 10, 75, #5FD823, 1);
-  enviro.update();
+  enviro2.prime(new PVector(500, 200), 10, 75, #5FD823, 1);
+  enviro2.update();
 }
 
 void lev2() {

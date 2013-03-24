@@ -12,6 +12,9 @@ class Target {
   int time;
   int coolTime;
   int stuckTime;
+  boolean attract;
+  float attractCounter;
+  Enviro favorite;
 
   void prime() {
     targetColor = color(175, 175, 0);
@@ -21,6 +24,7 @@ class Target {
     //environmental
     stuck=20000;
     coolTime=20000;
+    attract=false;
   }
 
   void drawTarget() {
@@ -62,6 +66,28 @@ class Target {
     else if (found==false) {
       targetColor = color(175, 175, 0);
     }
+  }
+  
+  //First attempt at attraction stuff. Buggy. 
+  void attraction(Enviro _favorite){
+    
+    favorite = _favorite;
+    
+     attractCounter++;
+    if (attractCounter>300 && attractCounter<500) {
+      attract=true;
+    }
+    else {
+      attract=false;
+    }
+    if (attractCounter>1000) {
+      attractCounter=0;
+    }
+    
+    if(attract){
+      pos.lerp(favorite.pos,0.01);
+    }
+    println(attract);
   }
 }
 

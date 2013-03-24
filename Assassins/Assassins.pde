@@ -4,6 +4,8 @@ Player player;
 ArrayList<Sheep> sheep;
 Target target;
 Enviro enviro;
+Enviro enviro2;
+
 
 int gameState;  //Counter to determine the game state
 int spawnBuffer = 60; //"Safe-Zone" buffer
@@ -42,13 +44,15 @@ void setup() {
   target.prime();
 
   enviro = new Enviro();
+  enviro2 = new Enviro();
+
 
   found=false;
 }
 
 void draw() {
   background(255);
-  println(gameState);
+//  println(gameState);
   switch(gameState) { 
   case 0:
     //draw title screen
@@ -177,7 +181,7 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize+5) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize) {
     found=true;
     gameState++;
     println("Found.");
