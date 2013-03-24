@@ -55,7 +55,7 @@ void draw() {
   fill(0);
   textSize(16);
   text("Press 'R' to reset", width-130, 15);
-//  println(gameState);
+  //  println(gameState);
   switch(gameState) { 
   case 0:
     //draw title screen
@@ -92,13 +92,23 @@ void draw() {
     break;
   case 5: 
     //Level 3
-        lev3();
+    lev3();
     break;
-  case 6:
-    //game over screen
-    break;
-  case 7: 
+  case 6: 
     //Win Screen
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("You did it. Press 'R' to play again.", width/2, height/2);
+    break;
+  case 7:
+    //game over screen
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("Game Over. Press 'R' to restart.", width/2, height/2);
     break;
   }
   if (timeFreeze==true) {

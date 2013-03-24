@@ -26,7 +26,7 @@ class Player {
     rect(20, 10, health, 5);
 
     //GAME OVER
-    if(health<1) gameState=6;
+    if(health<1) gameState=7;
     
     //COLLISION DETECTION
     //sheep against player
