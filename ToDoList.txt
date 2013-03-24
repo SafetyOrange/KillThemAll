@@ -1,20 +1,9 @@
 TO DO 
 
-/* Check it out, dog. I did some studying of the stupid, stupid target. Here's what I gathered about it, problems and all.
--The target's negative lerp will override collision on walls
--The closer you are to target, the less quickly it tries to avoid you (lerp logic)
--The target KEEPS its current velocity while lerping.(If it's coming towards you quickly, it will avoid you slowly, not just cruise away. Its velocity needs to be neutralized.
--All of this being said, I don't think the target needs to avoid you anymore, just have its giveaways be visible and put it on a track. Maybe?
-*/
 
-
-
-
-Fix target
-Dynamic level constraints
 Spamming Spacebar issue
-Collision 
 Make target like certain environmental things
+	-This was implemented, but now he's broken
 !!!! Playtest !!!!
 Interaction--attack, whatever you do to the target. 
 Boss level--possibly black friday
