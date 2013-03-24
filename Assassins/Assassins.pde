@@ -87,6 +87,7 @@ void draw() {
     //    lev3();
     break;
   case 6:
+    //game over screen
     break;
   case 7: 
     //Win Screen
