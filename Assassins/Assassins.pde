@@ -52,6 +52,8 @@ void setup() {
 
 void draw() {
   background(255);
+  textSize(16);
+  text("Press 'R' to reset", width-130, 15);
 //  println(gameState);
   switch(gameState) { 
   case 0:
