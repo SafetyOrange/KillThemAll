@@ -17,12 +17,15 @@ void lev1() {
 
   target.drawTarget();
   target.update();
-  target.attraction(enviro);
+  target.attraction(enviro); //Put the name of an instance of an object 
+                            //in this function to make target lerp to that 
+                            //occasionally
 
   
   enviro.prime(new PVector(100,500), 20, 150, #5FD823, 2);
   enviro.update();
   
+  //I made new instance in the main class so we can reference these specifically
   enviro2.prime(new PVector(500, 200), 10, 75, #5FD823, 1);
   enviro2.update();
 }
