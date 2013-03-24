@@ -73,6 +73,7 @@ void draw() {
     if (nextScreen) {
       gameState++;
       found=false;
+      player.health=100;
     }
     break;
   case 3:
