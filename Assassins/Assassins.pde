@@ -52,6 +52,7 @@ void setup() {
 
 void draw() {
   background(255);
+  fill(0);
   textSize(16);
   text("Press 'R' to reset", width-130, 15);
 //  println(gameState);
@@ -91,7 +92,7 @@ void draw() {
     break;
   case 5: 
     //Level 3
-    //    lev3();
+        lev3();
     break;
   case 6:
     //game over screen

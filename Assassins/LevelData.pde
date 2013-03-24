@@ -64,3 +64,28 @@ void lev2() {
   enviro.update();
 }
 
+void lev3() {
+  player.drawPlayer();
+  player.update();
+
+  fill(0);
+  rectMode(CORNER);                        //TIMEFREEZE BAR
+  rect(20, 20, tfCharge, 5);
+
+
+  while (sheep.size () <100) { //add sheep until there are 100 of them. Prime them. 
+    Sheep temp = new Sheep();
+    temp.prime();
+    sheep.add(temp);
+  }  
+
+  for (int i=0; i<sheep.size(); i++) { //draw and update sheep
+    Sheep temp = sheep.get(i); 
+    temp.updateSheep();
+    temp.drawSheep();
+  }
+
+  target.drawTarget();
+  target.update();
+}
+
