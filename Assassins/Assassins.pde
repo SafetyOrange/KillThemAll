@@ -24,7 +24,7 @@ void setup() {
   titlescreen = new titleScreen();
 
 
-  gameState=1;// set to 0 to include the start screen. Turned off for debugging. 
+  gameState=0;// set to 0 to include the start screen. Turned off for debugging. 
   smooth();
   frameRate(60);
   size(900, 600);
@@ -112,10 +112,6 @@ void draw() {
       tfCharge=100;
     }
   }
-
-  fill(0);
-  rectMode(CORNER);                        //TIMEFREEZE BAR
-  rect(20, 20, tfCharge, 5);
   // println(tfCharge);
 }
 
