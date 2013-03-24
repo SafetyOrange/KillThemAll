@@ -7,3 +7,5 @@ Make target like certain environmental things
 !!!! Playtest !!!!
 Interaction--attack, whatever you do to the target. 
 Boss level--possibly black friday
+
+Negative consequence for choosing the wrong person?
