@@ -21,7 +21,8 @@ class Target {
     targetVel= new PVector(random(-2, 2), random(-2, 2));
     peopleSize = 20;
     pos = new PVector(random(peopleSize/2, width-peopleSize/2), random(peopleSize/2+spawnBuffer, height-peopleSize/2));
-    //environmental
+  
+   //Environmental variables
     stuck=20000;
     coolTime=20000;
     attract=false;
