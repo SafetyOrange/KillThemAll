@@ -14,6 +14,7 @@ boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
 boolean timeFreeze;
 boolean nextScreen;
+boolean fail;
 
 float peopleSize;
 float tfCharge;
@@ -31,6 +32,7 @@ void setup() {
 
   timeFreeze=false;
   nextScreen=false;
+  fail=false;
   tfCharge = 100;
 
   float peopleSize = 10;
@@ -108,8 +110,17 @@ void draw() {
     fill(255);
     textAlign(CENTER);
     textSize(32);
-    text("Game Over. Press 'R' to restart.", width/2, height/2);
+    text("You have died. Press 'R' to restart.", width/2, height/2);
     break;
+case 100:
+    //Killed an innocent
+     background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("You killed an innocent person. Press 'R' to restart.", width/2, height/2);
+    break;
+    
   }
   if (timeFreeze==true) {
     tfCharge-=1;
@@ -191,29 +202,23 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize) {
+  if (dist(mouseX, mouseY, target.pos.x, target.pos.y)<peopleSize) {      //KILL TARGET
     found=true;
     gameState++;
     println("Found.");
     found=false;
     target.prime();
-    player.pos = new PVector(width/2, 20); //reset player location
+    player.pos = new PVector(width/2, 20);                                //reset player location
   }
 
   for (int i=0; i<sheep.size(); i++) {
     Sheep temp = sheep.get(i); 
-    if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2) {
-      println(temp.wasStuck);
-      //      if (temp.wasStuck==true && enviro.pos.dist(temp.pos)<enviro.diam/2) {
-      //        println("Caught");
-      //      }
-      //      if (temp.time>=temp.stuck+temp.stuckTime) {
-      //        println("Free");
-      //      }
-      //      if (temp.time>=temp.coolDown+temp.coolTime) {
-      //        println("Vulnerable");
-      //      }
+    if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2){        // KILL INNOCENT
+
+    gameState  = 100;
+
+    }      
+
     }
   }
-}
 
