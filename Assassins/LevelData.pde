@@ -133,3 +133,79 @@ void lev3() {
   target.update();
 }
 
+
+
+
+
+
+void gameManager(){
+  
+switch(gameState) {           //Level Manager. Data located in LevelData
+   
+  case 0:
+    //draw title screen
+    titlescreen.update();
+    break;
+    
+  case 1:
+    lev1(); // Level 1 == LEV1
+    break;
+    
+  case 2:
+    //draw transition screen
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("Press enter for next level", width/2, height/2);
+    if (nextScreen) {
+      gameState++;
+      found=false;
+      player.health=100;
+    }
+    break;
+    
+  case 3:
+    lev2();
+    break;
+    
+  case 4: 
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("Press enter for next level", width/2, height/2);
+    if (nextScreen) {
+      gameState++;
+    }    
+    break;
+  case 5: 
+    //Level 3
+    lev3();
+    break;
+  case 6: 
+    //Win Screen
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("You did it. Press 'R' to play again.", width/2, height/2);
+    break;
+  case 7:
+    //game over screen
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("You have died. Press 'R' to restart.", width/2, height/2);
+    break;
+  case 100:
+    //Killed an innocent
+    background(0);
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("You killed an innocent person. Press 'R' to restart.", width/2, height/2);
+    break;
+  }
+}
