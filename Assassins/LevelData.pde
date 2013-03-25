@@ -54,7 +54,7 @@ void lev1() {
 
   target.drawTarget();
   target.update();
-  target.attraction(enviro);           //Put the name of an instance of an object 
+  //target.attraction(enviro);           //Put the name of an instance of an object 
                                       //in this function to make target lerp to that 
                                      //occasionally
 

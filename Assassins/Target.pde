@@ -87,6 +87,10 @@ class Target {
     
     if(attract){
       pos.lerp(favorite.pos,0.01);
+      
+      //other method that was very buggy
+      //targetVel = PVector.sub(favorite.pos, pos);
+      //targetVel.normalize();
     }
     println(attract);
   }
