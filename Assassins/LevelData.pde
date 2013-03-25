@@ -136,11 +136,11 @@ void lev3() {
 
 
 
-
+//This is the part of the code that dictates level progression
 
 void gameManager(){
   
-switch(gameState) {           //Level Manager. Data located in LevelData
+switch(gameState) {
    
   case 0:
     //draw title screen
