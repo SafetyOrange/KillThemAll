@@ -55,20 +55,18 @@ class Enviro {
           temp.sheepVel.y=0;
           temp.stuck=temp.time;
           temp.wasStuck=true;
-    //      println("Caught");
         }
         if (temp.time>=temp.stuck+temp.stuckTime-20 && temp.time<=temp.stuck+temp.stuckTime+20) { //WTF
-    //      println("Free");
           temp.sheepVel = new PVector(random(-2, 2), random(-2, 2));
           temp.coolDown=temp.time;
         }
         if (temp.time>=temp.coolDown+temp.coolTime-20 && temp.time<=temp.coolDown+temp.coolTime+20) {
-   //       println("Vulnerable");
           temp.wasStuck=false;
         }
       }
       
       //effect of hazards on target
+      
       if(target.wasStuck==false && pos.dist(target.pos)<diam/2){
         target.targetVel.x=0;
         target.targetVel.y=0;

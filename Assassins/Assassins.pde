@@ -7,8 +7,8 @@ Enviro enviro;
 Enviro enviro2;
 
 
-int gameState;  //Counter to determine the game state
-int spawnBuffer = 60; //"Safe-Zone" buffer
+int gameState;                  //Counter to determine the game state
+int spawnBuffer = 60;           //"Safe-Zone" buffer
 
 boolean upTrue, downTrue, leftTrue, rightTrue = false;
 boolean found;
@@ -19,37 +19,10 @@ boolean fail;
 float peopleSize;
 float tfCharge;
 
-boolean displayInfo; //for debugging
+boolean displayInfo;           //for debugging
 
 void setup() {
-  titlescreen = new titleScreen();
-
-
-  gameState=0;// set to 0 to include the start screen. Turned off for debugging. 
-  smooth();
-  frameRate(60);
-  size(900, 600);
-
-  timeFreeze=false;
-  nextScreen=false;
-  fail=false;
-  tfCharge = 100;
-
-  float peopleSize = 10;
-
-  player = new Player();
-  player.prime();
-
-  sheep = new ArrayList<Sheep>(); 
-
-  target = new Target();
-  target.prime();
-
-  enviro = new Enviro();
-  enviro2 = new Enviro();
-
-
-  found=false;
+  prime();
 }
 
 void draw() {
@@ -57,15 +30,18 @@ void draw() {
   fill(0);
   textSize(16);
   text("Press 'R' to reset", width-130, 15);
-  //  println(gameState);
-  switch(gameState) { 
+  
+ switch(gameState) {           //Level Manager. Data located in LevelData
+   
   case 0:
     //draw title screen
     titlescreen.update();
     break;
+    
   case 1:
     lev1(); // Level 1 == LEV1
     break;
+    
   case 2:
     //draw transition screen
     background(0);
@@ -79,9 +55,11 @@ void draw() {
       player.health=100;
     }
     break;
+    
   case 3:
     lev2();
     break;
+    
   case 4: 
     background(0);
     fill(255);
@@ -112,17 +90,17 @@ void draw() {
     textSize(32);
     text("You have died. Press 'R' to restart.", width/2, height/2);
     break;
-case 100:
+  case 100:
     //Killed an innocent
-     background(0);
+    background(0);
     fill(255);
     textAlign(CENTER);
     textSize(32);
     text("You killed an innocent person. Press 'R' to restart.", width/2, height/2);
     break;
-    
   }
-  if (timeFreeze==true) {
+  
+  if (timeFreeze==true) {          //Time Freeze Formula
     tfCharge-=1;
     if (tfCharge<0) {
       tfCharge=0;
@@ -134,10 +112,9 @@ case 100:
       tfCharge=100;
     }
   }
-  // println(tfCharge);
 }
 
-void keyPressed() {
+void keyPressed() {                //Player input
   if (keyCode=='W') {
     upTrue=true;
   }
@@ -156,7 +133,6 @@ void keyPressed() {
 
   if (keyCode==' ') {
     timeFreeze=true;
-    //  println(timeFreeze);
   }
 
   if (keyCode==ENTER) {
@@ -189,7 +165,6 @@ void keyReleased() {
 
   if (keyCode==' ') {
     timeFreeze=false;
-    // println(timeFreeze);
   }
 
   if (keyCode=='R') {
@@ -213,12 +188,10 @@ void mouseClicked() {
 
   for (int i=0; i<sheep.size(); i++) {
     Sheep temp = sheep.get(i); 
-    if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2){        // KILL INNOCENT
+    if (dist(mouseX, mouseY, temp.pos.x, temp.pos.y)<peopleSize/2) {        // KILL INNOCENT
 
-    gameState  = 100;
-
-    }      
-
+      gameState  = 100;
     }
   }
+}
 

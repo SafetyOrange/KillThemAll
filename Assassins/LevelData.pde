@@ -1,3 +1,37 @@
+void prime(){
+   titlescreen = new titleScreen();
+
+  gameState=0;                 // set to 0 to include the start screen. Turned off for debugging. 
+  smooth();
+  frameRate(60);
+  size(900, 600);
+
+  timeFreeze=false;
+  nextScreen=false;
+  fail=false;
+  tfCharge = 100;
+
+  float peopleSize = 10;
+
+  player = new Player();
+  player.prime();
+
+  sheep = new ArrayList<Sheep>(); 
+
+  target = new Target();
+  target.prime();
+
+  enviro = new Enviro();
+  enviro2 = new Enviro();
+
+
+  found=false;
+}
+
+
+
+
+
 void lev1() {
   player.drawPlayer();
   player.update();
@@ -6,13 +40,13 @@ void lev1() {
   rectMode(CORNER);                        //TIMEFREEZE BAR
   rect(20, 20, tfCharge, 5);
 
-  while (sheep.size () <10) { //add sheep until there are 100 of them. Prime them. 
+  while (sheep.size () <10) {             //add sheep until there are 100 of them. Prime them. 
     Sheep temp = new Sheep();
     temp.prime();
     sheep.add(temp);
   }  
 
-  for (int i=0; i<sheep.size(); i++) { //draw and update sheep
+  for (int i=0; i<sheep.size(); i++) {      //draw and update sheep
     Sheep temp = sheep.get(i); 
     temp.updateSheep();
     temp.drawSheep();
@@ -20,18 +54,23 @@ void lev1() {
 
   target.drawTarget();
   target.update();
-  target.attraction(enviro); //Put the name of an instance of an object 
-  //in this function to make target lerp to that 
-  //occasionally
+  target.attraction(enviro);           //Put the name of an instance of an object 
+                                      //in this function to make target lerp to that 
+                                     //occasionally
 
 
   enviro.prime(new PVector(100, 500), 20, 150, #5FD823, 2);
   enviro.update();
 
-  //I made new instance in the main class so we can reference these specifically
+                                    //I made new instance in the main class so we can reference these specifically
   enviro2.prime(new PVector(500, 200), 10, 75, #5FD823, 1);
   enviro2.update();
 }
+
+
+
+
+
 
 void lev2() {
   player.drawPlayer();
@@ -42,7 +81,7 @@ void lev2() {
   rect(20, 20, tfCharge, 5);
 
 
-  while (sheep.size () <25) { //add sheep until there are 100 of them. Prime them. 
+  while (sheep.size () <25) {         //add sheep until there are 100 of them. Prime them. 
     Sheep temp = new Sheep();
     temp.prime();
     sheep.add(temp);
@@ -64,6 +103,11 @@ void lev2() {
   enviro.update();
 }
 
+
+
+
+
+
 void lev3() {
   player.drawPlayer();
   player.update();
@@ -73,13 +117,13 @@ void lev3() {
   rect(20, 20, tfCharge, 5);
 
 
-  while (sheep.size () <100) { //add sheep until there are 100 of them. Prime them. 
+  while (sheep.size () <100) {         //add sheep until there are 100 of them. Prime them. 
     Sheep temp = new Sheep();
     temp.prime();
     sheep.add(temp);
   }  
 
-  for (int i=0; i<sheep.size(); i++) { //draw and update sheep
+  for (int i=0; i<sheep.size(); i++) {   //draw and update sheep
     Sheep temp = sheep.get(i); 
     temp.updateSheep();
     temp.drawSheep();
